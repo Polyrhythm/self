@@ -1,3 +1,6 @@
+Current status: alpha (landing page done, some authentication done)
+
+
 Self
 ===
 
