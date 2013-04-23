@@ -1,0 +1,30 @@
+.wrapper.signup
+  .hero.top_margin
+    h1.whatup sign up here
+    h2.whatup_sub.no_margin (prepare for awesome)
+
+  .form_container.signup(ng-controller="SignupCtrl")
+    form(action="/signup", method="post", novalidate).login.signup
+      .control-group
+        label.control-label(for="inputEmail") Username
+        .controls
+          input#inputEmail.immediate-help(type="text", placeholder="Username", name="username", required)
+      .control-group
+        label.control-label(for="inputEmail") Email
+        .controls
+          input#inputEmail.immediate-help(type="email", placeholder="Email", ng-model="email", name="email", required)
+      .control-group
+        label.control-label(for="inputPassword") Password
+          .controls
+            input#inputPassword.immediate-help(type="password", placeholder="Password",
+              password-validate, ng-model="password", name="password", required)
+            .input-help
+              h4 Your password must meet the following requirements:
+              ul
+                li(ng-class="pwdHasLetter") At least <strong>one letter</strong>
+                li(ng-class="pwdHasNumber") At least <strong>one number</strong>
+                li(ng-class="pwdValidLength") At least <strong>six characters</strong>
+      .control-group
+        .controls
+          button.login_btn(type="submit") Create account
+          button.login_btn(disabled) Create account

@@ -1,0 +1,14 @@
+.wrapper.login
+  .hero.top_margin
+    h1.whatup login here
+  .form_container
+    form(action="/login", method="post").login
+      fieldset
+        label.login Username:
+        input(type="text", name="username")
+  
+        label.login Password:
+        input(type="password", name="password")
+
+      a(href="#/signup").signup_link new here? create an account
+      input(type="submit", value="Login").login_btn

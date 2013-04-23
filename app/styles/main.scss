@@ -1,0 +1,347 @@
+@import "settings";
+@import "foundation";
+@import "compass/reset";
+@import "compass/css3";
+@import "normalize";
+
+// Typography
+ul, a, li {
+  color: $off_black;
+}
+
+a:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.top-bar {
+  ul.right {
+
+    li > a {
+      color: $off_black;
+      cursor: pointer;
+      background: white;
+      text-transform: lowercase;
+      font-size: emCalc(26px);
+
+      &.login {
+        background: $yellow;
+
+        &:hover {
+          background: darken($yellow, 10%);
+        }
+      }
+      &.about {
+        background: $soft_pink;
+
+        &:hover {
+          background: darken($soft_pink, 5%);
+        }
+      }
+      &.logout {
+        background: $soft_green;
+
+        &:hover {
+          background: darken($soft_green, 5%);
+        }
+      }
+
+      &:hover {
+        @include transition-property(background);
+        @include transition-duration(0.15s);
+      }
+    }
+  }
+
+  h1 a.title {
+    color: $off_white;
+    font-weight: bold;
+    font-size: emCalc(40px);
+    @include text-shadow($off_black 1px 1px 0, $off_black -1px -1px 0, 
+                         $off_black -1px 1px 0, $off_black 1px -1px 0);
+  }
+}
+
+span.title {
+  color: $off_white;
+  font-weight: bold;
+  font-size: emCalc(16px);
+  @include text-shadow($off_black 1px 1px 0, $off_black -1px -1px 0, 
+                       $off_black -1px 1px 0, $off_black 1px -1px 0);
+}
+
+.hero {
+  .whatup {
+    font-size: emCalc(60px);
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .whatup_sub {
+    font-size: emCalc(40px);
+
+    &.no_margin {
+      margin-top: 0;
+    }
+  }
+}
+
+.highlight {
+  background: $yellow;
+  display: inline-block;
+}
+
+.sign_up {
+  font-size: emCalc(30px);
+  padding: 10px 5px;
+  @include border-radius(5px);
+  border: 1px dashed $off_black;
+
+  &:hover {
+    border: 1px solid black;
+  }
+}
+
+label.login {
+  text-transform: lowercase;
+  color: white;
+  font-weight: bold;
+  font-size: emCalc(20px);
+  margin-bottom: emCalc(5px);
+}
+
+// Styles
+
+body, html {
+  background: $off_white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.top-bar {
+  position: relative;
+  z-index: 100;
+  border-bottom: 2px dashed $off_black;
+}
+
+// index page
+.wrapper {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &.landing {
+    background: url(../images/roy.jpg) no-repeat;
+    background-size: 100% auto;
+  }
+}
+
+.hero {
+  text-align: center;
+
+  &.top_margin {
+    margin-top: 50px;
+  }
+
+  .text_container {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255,255,255,0.95);
+    padding: 5%;
+    @include border-radius(10px);
+    margin-top: 50px;
+  }
+
+  hr {
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  .whatup_sub.last {
+    margin-top: emCalc(20px);
+    font-weight: bold;
+  }
+
+  .signup {
+    padding: 10px;
+
+    &:hover {
+      background: darken($yellow, 10%);
+      @include transition-property(background);
+      @include transition-duration(0.15s);
+    }
+  }
+}
+
+// login page
+.form_container.signup {
+  width: 50%;
+  margin: 0 auto;
+}
+
+form.login {
+  width: 50%;
+  margin: 50px auto 0 auto;
+
+  .controls {
+    position: relative;
+  }
+
+  .input-help {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    top: -6px;
+    right:  -215px;
+    width: 200px;
+    padding: 10px;
+    background: #fefefe;
+    font-size: .875em;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #aaa;
+    border: 1px solid #ddd;
+    opacity: 0.9;
+    
+    &:before {
+      content: "\25C0";
+      position: absolute;
+      top: 10px;
+      left: -14px;
+      font-size: 16px;
+      line-height: 16px;
+      color: #ddd;
+      text-shadow: none;
+    }
+
+    h4 {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 1.1em;
+    }
+  }
+
+  /* Show a blue border while an input has focus, make sure it overrides everything else */
+  /* Overriding Twitter Bootstrap cuz I don't agree we need to alarm the user while they're typing */
+  input:focus {
+    color: black !important;
+    border-color: rgba(82, 168, 236, 0.8) !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6) !important;
+  }
+
+  /* Always hide the input help when it's pristine */
+  input.ng-pristine + .input-help {
+    display: none;
+  }
+
+  /* Hide the invalid box while the input has focus */
+  .ng-invalid:focus + .input-help {
+    display: none;
+  }
+  
+  /* Show green border when stuff has been typed in, and its valid */
+  .ng-dirty.ng-valid {
+    border-color: green;
+  }
+
+  /* Show red border when stuff has been typed in, but its invalid */
+  .ng-dirty.ng-invalid {
+    border-color: red;
+  }
+
+  /* Show the help box once it has focus */
+  .immediate-help:focus + .input-help {
+    display: block;
+  }
+
+  /* Immediate help should be red when pristine */
+  .immediate-help.ng-pristine:focus + .input-help {
+    border-color: red;
+  }
+  .immediate-help.ng-pristine:focus + .input-help::before {
+    color: red;
+  }
+
+  /* Help hould be green when input is valid */
+  .ng-valid + .input-help {
+    border-color: green;
+    
+    &:before {
+      color: green;
+    }
+  }
+
+  /* Style input help requirement bullets */
+  .input-help ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+  }
+
+  /* Default each bullet to be invalid with a red cross and text */
+  .input-help li {
+    padding-left: 22px;
+    line-height: 24px;
+    color: red;
+  }
+
+  /* Set to green check and text when valid */
+  .input-help li.valid {
+    color: green;
+  }
+
+  .login_btn {
+    border: none;
+    background: $yellow;
+    padding: 10px;
+    margin: 10px 0 0 0;
+    float: right;
+    color: $off_black;
+    text-transform: lowercase;
+    font-size: emCalc(30px);
+    font-weight: bold;
+    
+    &[disabled] {
+      @include opacity(0.3);
+      display: none;
+
+      &:hover {
+        background: yellow;
+      }
+    }
+
+    &:hover {
+      background: darken($yellow, 10%);
+      @include transition-property(background);
+      @include transition-duration(0.15s);
+    }
+  }
+
+  /* Set submit button */
+  &.ng-valid .login_btn[disabled], &.ng-invalid .login_btn {
+    display: none;
+  }
+
+  &.ng-invalid .login_btn[disabled], &.ng-valid .login_btn {
+    display: inline-block;
+  }
+
+  .signup_link {
+    margin-top: 10px;
+    float: left;
+    background: $yellow;
+    font-weight: bold;
+    
+    &:hover {
+      background: darken($yellow, 10%);
+      @include transition-property(background);
+      @include transition-duration(0.15s);
+    }
+  }
+}

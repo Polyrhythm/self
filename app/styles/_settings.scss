@@ -1,0 +1,51 @@
+// Colors
+
+$off_black: #343434;
+$off_white: #FFFCFC;
+$red: #FF3030;
+$yellow: #FFFF24;
+$soft_pink: #F7DCE7;
+$soft_green: #B0FFCD;
+
+// Header
+
+$topbar-bg: $off_white;
+$topbar-height: 45px;
+$header-font-color: $off_black;
+$topbar-link-color: $off_black;
+$topbar-menu-link-color: $off_black;
+$topbar-breakpoint: 600px;
+$topbar-link-font-size: emCalc(30px);
+
+/* Style the top bar dropdown elements */
+$topbar-dropdown-bg: $off_white;
+$topbar-dropdown-link-color: $off_black;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: $off_black;
+$topbar-dropdown-toggle-alpha: 0.5;
+$dropdown-label-color: $off_black;
+
+/* Top menu icon styles */
+$topbar-menu-link-transform: lower-case;
+$topbar-menu-link-weight: bold;
+$topbar-menu-icon-color: $off_black;
+$topbar-menu-link-color-toggled: $off_black;
+$topbar-menu-icon-color-toggled: $off_black;
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
