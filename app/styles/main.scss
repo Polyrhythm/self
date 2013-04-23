@@ -24,7 +24,7 @@ a:hover {
       text-transform: lowercase;
       font-size: emCalc(26px);
 
-      &.login {
+      &.login, &.user {
         background: $yellow;
 
         &:hover {

@@ -13,10 +13,14 @@ block body
       ul.right
         li
           a(href="#/about").about about
-        li
-          a(href="#/login").login login
-        li
-          a(href="/logout").logout logout
+        - if (!user)
+          li
+            a(href="#/login").login login
+        - else
+          li
+            a(href="#/app/profile").user #{user.username}
+          li
+            a(href="/logout").logout logout
 
   div(ng-view).page_container
   

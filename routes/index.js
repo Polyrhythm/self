@@ -5,7 +5,7 @@ var passport = require('passport'),
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('#/login')
+  res.redirect('#/login');
 }
 
 module.exports = function(app) {
@@ -15,20 +15,17 @@ module.exports = function(app) {
   });
 
   app.get('/', function(req, res) {
-    res.render('index');
+    res.render('index', {user: req.user});
+  });
+
+  app.get('/partials/feed', ensureAuthenticated, function(req, res) {
+    res.render('partials/feed', {user: req.user});
   });
 
   app.get('/partials/:name', function(req, res) {
     var name = req.params.name;
-    res.render('partials/' + name);
+    res.render('partials/' + name, {user: req.user});
   });
-
-  app.get('/app/:name', passport.authenticate('local', {
-    failureRedirect: '#/login',
-    failureFlash: false
-  }), function(req, res) {
-        res.redirect('/app/' + req.params.name);
-      });
 
   app.post('/login', passport.authenticate('local', {
     failureRedirect: '#/login',
