@@ -3,6 +3,8 @@
     h1.whatup login here
   .form_container
     form(action="/login", method="post").login
+      - if (message)
+        div.error #{message}
       fieldset
         label.login Username:
         input(type="text", name="username")

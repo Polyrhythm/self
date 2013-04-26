@@ -9,11 +9,6 @@ function ensureAuthenticated(req, res, next) {
 }
 
 module.exports = function(app) {
-  app.get('/flash', function(req, res){
-    req.flash('info', 'Flash is back!');
-    res.redirect('/');
-  });
-
   app.get('/', function(req, res) {
     res.render('index', {user: req.user});
   });
@@ -24,7 +19,8 @@ module.exports = function(app) {
 
   app.get('/partials/:name', function(req, res) {
     var name = req.params.name;
-    res.render('partials/' + name, {user: req.user});
+    res.render('partials/' + name,
+               {user: req.user, message: req.flash('error')});
   });
 
   app.post('/login', passport.authenticate('local', {
