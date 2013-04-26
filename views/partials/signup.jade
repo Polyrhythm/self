@@ -5,6 +5,8 @@
 
   .form_container.signup(ng-controller="SignupCtrl")
     form(action="/signup", method="post", novalidate).login.signup
+      - if (message)
+        div.error #{message}
       .control-group
         label.control-label(for="inputEmail") Username
         .controls
