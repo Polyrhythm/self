@@ -32,7 +32,12 @@ db.open(function(err, db) {
     console.log('Connected to database');
     db.collection('users', {strict:true}, function(err, collection) {
       if (err) {
-        console.log(err)
+        console.log(err);
+      }
+    });
+    db.collection('status', {strict:true}, function(err, collection) {
+      if (err) {
+        console.log(err);
       }
     });
   }

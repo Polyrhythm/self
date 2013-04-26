@@ -3,12 +3,14 @@
 var flash = require('connect-flash'),
     express = require('express'),
     routes = require('./routes'),
-    users = require('./routes/user'),
+    db = require('./routes/db'),
     util = require('util'),
     passport = require('passport'),
     mongoose = require('mongoose');
 
-var User = require("./models/user");
+// Models
+var User = require("./models/user"),
+    Status = require('./models/status');
 
 var app = express();
 

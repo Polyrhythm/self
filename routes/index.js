@@ -1,19 +1,15 @@
 'use strict';
 
 var passport = require('passport'),
+    ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn,
     User = require('../models/user');
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('#/login');
-}
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
     res.render('index', {user: req.user});
   });
 
-  app.get('/partials/feed', ensureAuthenticated, function(req, res) {
+  app.get('/partials/feed', ensureLoggedIn('#/login'), function(req, res) {
     res.render('partials/feed', {user: req.user});
   });
 
@@ -27,12 +23,12 @@ module.exports = function(app) {
     failureRedirect: '#/login',
     failureFlash: "Invalid username or password"
   }), function(req, res) {
-        res.redirect('#/app/feed');
+        return res.redirect('#/app/feed');
       });
 
   app.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('#/login');
   });
 
   app.post('/signup', function(req, res) {
@@ -40,10 +36,11 @@ module.exports = function(app) {
                   function(err, account) {
                     if (err) {
                       console.log(err);
-                      res.redirect('#/signup');
+                      req.flash('error', String(err));
+                      return res.redirect('#/signup');
                     }
 
-                    res.redirect('#/app/profile');
+                    return res.redirect('#/app/profile');
                   });
   });
 }
